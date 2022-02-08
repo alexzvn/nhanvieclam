@@ -30,9 +30,9 @@ class CreateJobsTable extends Migration
             $table->timestamp('deadline')->nullable();
             $table->timestamps();
 
-            $table->foreignId('province_id')->constrained()->nullOnDelete();
-            $table->foreignId('category_id')->constrained()->nullOnDelete();
-            $table->foreignId('author_id')->constrained('users')->nullOnDelete();
+            $table->foreignId('province_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('author_id')->nullable()->constrained('users')->nullOnDelete();
         });
     }
 
