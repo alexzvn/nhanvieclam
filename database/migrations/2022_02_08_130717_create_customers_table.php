@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('identity_id')->nullable();
             $table->bigInteger('balance')->default(0);
 
-            $table->string('role')->default(CustomerRole::SILVER)->index();
+            $table->string('role')->default(CustomerRole::SILVER->value)->index();
 
             $table->string('password');
             $table->rememberToken();
