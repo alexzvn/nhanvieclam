@@ -32,7 +32,7 @@ class CreateJobsTable extends Migration
 
             $table->foreignId('province_id')->constrained()->nullOnDelete();
             $table->foreignId('category_id')->constrained()->nullOnDelete();
-            $table->foreignId('author_id')->constrained()->nullOnDelete();
+            $table->foreignId('author_id')->constrained('users')->nullOnDelete();
         });
     }
 
