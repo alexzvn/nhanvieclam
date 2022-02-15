@@ -16,6 +16,7 @@ Các trường cơ bản:
 - Địa chỉ (*hidden)
 - Số lượng thợ (slot)
 - Số điện thoại (*hidden)
+- Hình ảnh/video
 - Quan trọng
 - Deadline
 - Ngày tháng đã tạo
