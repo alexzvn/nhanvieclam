@@ -18,7 +18,7 @@ Route::get('login', [LoginController::class, 'show'])->name('login');
 Route::post('login', [LoginController::class, 'authenticate']);
 
 Route::group(['middleware' => 'auth:manager'], function () {
-    Route::get('/', fn() => view('dashboard.layouts.main'));
+    Route::get('/', fn() => view('dashboard.layouts.main'))->name('manager.dashboard');
 
     Route::get('logout', function () {
         auth()->guard('manager')->logout();
