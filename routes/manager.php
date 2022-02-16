@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Manager\Auth\LoginController;
+use App\Http\Controllers\Manager\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('login', [LoginController::class, 'show'])->name('login');
 Route::post('login', [LoginController::class, 'authenticate']);
+Route::post('logout', [LogoutController::class, 'logout'])->middleware('auth:manager')->name('logout');
 
 Route::group(['middleware' => 'auth:manager'], function () {
     Route::get('/', fn() => view('dashboard.layouts.main'))->name('manager.dashboard');
