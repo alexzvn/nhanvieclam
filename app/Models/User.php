@@ -43,4 +43,9 @@ class User extends Authenticatable
         'role' => UserRole::class,
         'email_verified_at' => 'datetime',
     ];
+
+    public function isRole(UserRole $role)
+    {
+        return $this->role === $role;
+    }
 }

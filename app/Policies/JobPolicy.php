@@ -30,7 +30,7 @@ class JobPolicy
      */
     public function view(User $user, Job $job)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class JobPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class JobPolicy
      */
     public function update(User $user, Job $job)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +65,7 @@ class JobPolicy
      */
     public function delete(User $user, Job $job)
     {
-        //
+        return true;
     }
 
     /**
@@ -77,7 +77,7 @@ class JobPolicy
      */
     public function restore(User $user, Job $job)
     {
-        //
+        return true;
     }
 
     /**
@@ -89,6 +89,6 @@ class JobPolicy
      */
     public function forceDelete(User $user, Job $job)
     {
-        //
+        return true;
     }
 }

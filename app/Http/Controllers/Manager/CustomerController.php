@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Customer::class, 'customer');
+    }
+
     public function index()
     {
         
@@ -39,6 +43,11 @@ class CustomerController extends Controller
     }
 
     public function pardon(Customer $customer)
+    {
+        
+    }
+
+    public function destroy(Customer $customer)
     {
         
     }

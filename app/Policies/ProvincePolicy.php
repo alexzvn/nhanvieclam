@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserRole;
 use App\Models\Province;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -18,7 +19,7 @@ class ProvincePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->isRole(UserRole::ADMIN);
     }
 
     /**
@@ -30,7 +31,7 @@ class ProvincePolicy
      */
     public function view(User $user, Province $province)
     {
-        //
+        return $user->isRole(UserRole::ADMIN);
     }
 
     /**
@@ -41,7 +42,7 @@ class ProvincePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->isRole(UserRole::ADMIN);
     }
 
     /**
@@ -53,7 +54,7 @@ class ProvincePolicy
      */
     public function update(User $user, Province $province)
     {
-        //
+        return $user->isRole(UserRole::ADMIN);
     }
 
     /**
@@ -65,7 +66,7 @@ class ProvincePolicy
      */
     public function delete(User $user, Province $province)
     {
-        //
+        return $user->isRole(UserRole::ADMIN);
     }
 
     /**
@@ -77,7 +78,7 @@ class ProvincePolicy
      */
     public function restore(User $user, Province $province)
     {
-        //
+        return $user->isRole(UserRole::ADMIN);
     }
 
     /**
@@ -89,6 +90,6 @@ class ProvincePolicy
      */
     public function forceDelete(User $user, Province $province)
     {
-        //
+        return $user->isRole(UserRole::ADMIN);
     }
 }
