@@ -24,15 +24,15 @@ Route::post('logout', [LogoutController::class, 'logout'])->middleware('auth:man
 Route::group(['middleware' => 'auth:manager'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('manager.dashboard');
 
-    Route::group(['prefix' => 'customers'], function () {
-        Route::get('/', [CustomerController::class, 'index'])->name('manager.customer');
-        Route::get('create', [CustomerController::class, 'create'])->name('manager.customer.create');
-        Route::post('store', [CustomerController::class, 'store'])->name('manager.customer.store');
-        Route::get('{customer}/show', [CustomerController::class, 'show'])->name('manager.customer.show');
-        Route::post('{customer}/update', [CustomerController::class, 'update'])->name('manager.customer.update');
+    Route::prefix('customers')->controller(CustomerController::class)->group(function () {
+        Route::get('/', 'index')->name('manager.customer');
+        Route::get('create', 'create')->name('manager.customer.create');
+        Route::post('store', 'store')->name('manager.customer.store');
+        Route::get('{customer}/show', 'show')->name('manager.customer.show');
+        Route::post('{customer}/update', 'update')->name('manager.customer.update');
 
-        Route::post('{customer}/delete', [CustomerController::class, 'destroy'])->name('manager.customer.delete');
-        Route::post('{customer}/ban', [CustomerController::class, 'ban'])->name('manager.customer.ban');
-        Route::post('{customer}/pardon', [CustomerController::class, 'pardon'])->name('manager.customer.pardon');
+        Route::post('{customer}/delete', 'destroy')->name('manager.customer.delete');
+        Route::post('{customer}/ban', 'ban')->name('manager.customer.ban');
+        Route::post('{customer}/pardon', 'pardon')->name('manager.customer.pardon');
     });
 });

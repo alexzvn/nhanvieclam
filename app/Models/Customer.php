@@ -12,6 +12,19 @@ class Customer extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
+    protected $fillable = [
+        'name',
+        'phone',
+        'address',
+        'identity_id',
+        'role'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     protected $casts = [
         'role' => CustomerRole::class,
     ];
