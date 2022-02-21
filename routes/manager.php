@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Manager\Auth\LoginController;
 use App\Http\Controllers\Manager\Auth\LogoutController;
+use App\Http\Controllers\Manager\CategoryController;
 use App\Http\Controllers\Manager\CustomerController;
 use App\Http\Controllers\Manager\HomeController;
 use App\Http\Controllers\Manager\UserController;
@@ -24,6 +25,15 @@ Route::post('logout', [LogoutController::class, 'logout'])->middleware('auth:man
 
 Route::group(['middleware' => 'auth:manager'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('manager.dashboard');
+
+    Route::prefix('categories')->controller(CategoryController::class)->group(function () {
+        Route::get('/', 'index')->name('manager.category');
+        Route::get('create', 'create')->name('manager.category.create');
+        Route::post('store', 'store')->name('manager.category.store');
+        Route::get('{category}/show', 'show')->name('manager.category.show');
+        Route::post('{category}/update', 'update')->name('manager.category.update');
+        Route::post('{category}/delete', 'delete')->name('manager.category.delete');
+    });
 
     Route::prefix('customers')->controller(CustomerController::class)->group(function () {
         Route::get('/', 'index')->name('manager.customer');
