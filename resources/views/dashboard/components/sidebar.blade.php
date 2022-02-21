@@ -87,6 +87,7 @@
             </li>
 
 
+            @can('view', \App\Model\User::class)
             <li class="menu">
                 <a href="#managers" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
@@ -97,10 +98,11 @@
                     </div>
                 </a>
                 <ul class="collapse submenu list-unstyled" id="managers" data-parent="#accordionExample">
-                    <li><a href="index.html"> Tạo mới </a></li>
-                    <li><a href="index2.html"> Tất cả </a></li>
+                    <li><a href="{{ route('manager.user.create') }}"> Tạo mới </a></li>
+                    <li><a href="{{ route('manager.user') }}"> Tất cả </a></li>
                 </ul>
             </li>
+            @endcan
 
         </ul>
         

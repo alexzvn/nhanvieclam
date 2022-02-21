@@ -42,7 +42,7 @@ class CustomerController extends Controller
             'address' => 'required|string',
             'identity_id' => 'nullable|string',
             'role' => new Enum(CustomerRole::class),
-            'password' => 'required|same:password_confirmed'
+            'password' => 'required|confirmed'
         ]));
 
         $customer->forceFill([
@@ -55,9 +55,23 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function update(Customer $customer)
+    public function update(Customer $customer, $request)
     {
-        
+        $attrs = $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required|string',
+            'identity_id' => 'nullable|string',
+            'role' => new Enum(CustomerRole::class),
+            'password' => 'nullable|confirmed',
+        ]);
+
+        if ($request->password) {
+            $attrs['password'] = Hash::make($request->password);
+        }
+
+        $customer->forceFill($attrs)->save();
+
+        return to_route('manager.customer.show', $customer);
     }
 
     public function ban(Customer $customer)

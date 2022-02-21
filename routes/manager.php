@@ -4,6 +4,7 @@ use App\Http\Controllers\Manager\Auth\LoginController;
 use App\Http\Controllers\Manager\Auth\LogoutController;
 use App\Http\Controllers\Manager\CustomerController;
 use App\Http\Controllers\Manager\HomeController;
+use App\Http\Controllers\Manager\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,13 @@ Route::group(['middleware' => 'auth:manager'], function () {
         Route::post('{customer}/delete', 'destroy')->name('manager.customer.delete');
         Route::post('{customer}/ban', 'ban')->name('manager.customer.ban');
         Route::post('{customer}/pardon', 'pardon')->name('manager.customer.pardon');
+    });
+
+    Route::prefix('users')->controller(UserController::class)->group(function () {
+        Route::get('/', 'index')->name('manager.user');
+        Route::get('create', 'create')->name('manager.user.create');
+        Route::post('store', 'store')->name('manager.user.store');
+        Route::get('{user}/show', 'show')->name('manager.user.show');
+        Route::post('{user}/update', 'update')->name('manager.user.update');
     });
 });
